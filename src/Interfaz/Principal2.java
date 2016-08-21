@@ -72,9 +72,19 @@ public class Principal2 extends javax.swing.JFrame {
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 600, 10));
 
         cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
 
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,6 +100,37 @@ public class Principal2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+     String res1,res2;
+     int bonif,total,nhijos,sueldob;
+        
+     sueldob= Integer.parseInt(txtSueldoBase.getText());   
+     nhijos= Integer.parseInt(txtNumeroHijos.getText()); 
+     
+     bonif=80000*nhijos;
+     total=sueldob+bonif;
+     
+     res1=String.valueOf(bonif); 
+     res2=String.valueOf(total); 
+     
+     txtBonificacion.setText(res1);
+     txtTotal.setText(res2);
+             
+     
+    }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+     
+    txtSueldoBase.setText("");
+    txtNumeroHijos.setText("");
+    txtBonificacion.setText("");
+    txtTotal.setText("");
+
+    txtSueldoBase.requestFocusInWindow();
+    
+    
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
