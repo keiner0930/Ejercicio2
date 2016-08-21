@@ -5,6 +5,8 @@
  */
 package Interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sony
@@ -53,12 +55,24 @@ public class Principal2 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Sueldo Base");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
-        jPanel1.add(txtSueldoBase, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 130, 30));
+
+        txtSueldoBase.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSueldoBaseKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtSueldoBase, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 100, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Numero de Hijos");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
-        jPanel1.add(txtNumeroHijos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 130, 30));
+
+        txtNumeroHijos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroHijosKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNumeroHijos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 100, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Monto de La Bonificacion :");
@@ -67,8 +81,12 @@ public class Principal2 extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Total a Pagar :");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
-        jPanel1.add(txtBonificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 130, 30));
-        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 130, 30));
+
+        txtBonificacion.setEditable(false);
+        jPanel1.add(txtBonificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 100, 30));
+
+        txtTotal.setEditable(false);
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 100, 30));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 600, 10));
 
         cmdCalcular.setText("Calcular");
@@ -104,6 +122,18 @@ public class Principal2 extends javax.swing.JFrame {
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
      String res1,res2;
      int bonif,total,nhijos,sueldob;
+     
+     if(txtSueldoBase.getText().isEmpty()){
+     JOptionPane.showMessageDialog(this, "Digite El Sueldo Base","Error",JOptionPane.ERROR_MESSAGE);
+     txtSueldoBase.requestFocusInWindow();
+     }
+     
+     else if (txtNumeroHijos.getText().trim().isEmpty()){
+     JOptionPane.showMessageDialog(this, "Digite El Numero De Hijos","Error",JOptionPane.ERROR_MESSAGE);
+     txtNumeroHijos.requestFocusInWindow();
+     }
+    
+     else{
         
      sueldob= Integer.parseInt(txtSueldoBase.getText());   
      nhijos= Integer.parseInt(txtNumeroHijos.getText()); 
@@ -117,7 +147,7 @@ public class Principal2 extends javax.swing.JFrame {
      txtBonificacion.setText(res1);
      txtTotal.setText(res2);
              
-     
+     }
     }//GEN-LAST:event_cmdCalcularActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
@@ -131,6 +161,24 @@ public class Principal2 extends javax.swing.JFrame {
     
     
     }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void txtSueldoBaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSueldoBaseKeyTyped
+        char c=evt.getKeyChar(); 
+     if(!Character.isDigit(c)) { 
+              getToolkit().beep();  
+              evt.consume();
+        
+          }     
+    }//GEN-LAST:event_txtSueldoBaseKeyTyped
+
+    private void txtNumeroHijosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroHijosKeyTyped
+      char c=evt.getKeyChar(); 
+     if(!Character.isDigit(c)) { 
+              getToolkit().beep();  
+              evt.consume();
+        
+          }     
+    }//GEN-LAST:event_txtNumeroHijosKeyTyped
 
     /**
      * @param args the command line arguments
